@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: Lambda Python to deploy  Serverless
+Resources:
+  Function:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+    FunctionName: RESTAURANT-ASSING-DAMY_API
+    Handler: lambda_function.lambda_handler
+    Role: 
+      - 'arn:aws:iam::*:role/lambda-execution-role'
+      - 'configure as per account'
+    Environment:
+      Variables:
+        appname: RESTAURANT_TERENCE
+        environment: dev
+        region: ap-southeast-1
+    Code:
+    S3Bucket: 
+      - com-default-api-built # - update as per account'
+    S3Key: lambda/lambda.zip
+    Runtime: python3.8
+    Description: Lambda to interact with Restaurant API
+    Timeout: 900
+    VpcConfig:
+    SecurityGroupIds:
+      - sg-* ## # - update as per account'
+    SubnetIds:
+      - subnet-* # - update as per account'
+    Tags:
+    Costcenter: # - update as per account'
+    Consumer: # - update as per account'
+    Application: # - update as per account'
